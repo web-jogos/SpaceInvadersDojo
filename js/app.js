@@ -10,9 +10,10 @@ $(function(){
 
     var canvas = document.getElementById("canvas");
     var context = canvas.getContext("2d");
+    var teclado = new Teclado(document);
     var game = new Game(context, FRAMES_POR_SEGUNDO);
     var tela = new Tela(game);
-
+    game.teclado = teclado;
 
     var nave = new Nave(game, sprite_nave);
     game.iniciar();

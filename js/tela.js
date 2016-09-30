@@ -7,6 +7,9 @@ function Tela(game){
   this.altura = this.context.canvas.height;
   this.game.elementos.push(this);
   this.game.tela = this;
+  this.margem_x = this.largura*0.1;
+  this.largura_util = this.largura - (2*this.margem_x);
+
 }
 
 Tela.prototype.desenhar = function(){
