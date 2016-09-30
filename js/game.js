@@ -14,6 +14,8 @@ function Game(context, frames_segundo){
   this.total_frames = 0;
   this.frames_segundo = frames_segundo;
   this.tempo = new Tempo();
+  this.x = 0;
+  this.y = 0;
 }
 
 Game.prototype.ligar = function(){

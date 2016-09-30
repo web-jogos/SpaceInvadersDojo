@@ -3,9 +3,10 @@ COR_TELA = "rgb(0,0,0)";
 function Tela(game){
   this.game = game;
   this.context = game.context;
-  this.largura = context.canvas.width;
-  this.altura = context.canvas.height;
+  this.largura = this.context.canvas.width;
+  this.altura = this.context.canvas.height;
   this.game.elementos.push(this);
+  this.game.tela = this;
 }
 
 Tela.prototype.desenhar = function(){
