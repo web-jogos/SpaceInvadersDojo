@@ -10,8 +10,8 @@ Autor: Éderson Cássio
 
 function Game(context, frames_segundo){
   this.context = context;
-  this.elementos = [];
   this.total_frames = 0;
+  this.balas = [];
   this.frames_segundo = frames_segundo;
   this.tempo = new Tempo();
   this.x = 0;
@@ -50,15 +50,21 @@ Game.prototype.limparTela = function(){
 }
 
 Game.prototype.atualizar = function(){
-  for(var i in this.elementos){
-    this.elementos[i].atualizar();
+  this.tela.atualizar();
+  this.nave.atualizar();
+  for(var i in this.balas){
+    this.balas[i].atualizar();
   }
+  //this.coringons.atualizar();
 }
 
 Game.prototype.desenhar = function(){
-  for(var i in this.elementos){
-    this.elementos[i].desenhar();
+  this.tela.desenhar();
+  this.nave.desenhar();
+  for(var i in this.balas){
+    this.balas[i].desenhar();
   }
+  //this.coringons.desenhar();
 }
 
 Game.prototype.tempoFrame = function(){

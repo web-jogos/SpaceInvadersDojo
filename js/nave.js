@@ -8,7 +8,7 @@ function Nave(game, sprite){
   this.game = game;
   this.sprite = sprite;
   this.context = game.context;
-  this.game.elementos.push(this);
+  this.game.nave = this;
   tela = this.game.tela;
   this.x = (tela.largura- (SPRITE_NAVE_LARGURA / 2)) / 2;
   var margem_nave_y = tela.altura*0.1 + (SPRITE_NAVE_ALTURA / 2);
