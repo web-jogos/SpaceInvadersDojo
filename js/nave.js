@@ -51,4 +51,8 @@ Nave.prototype.atualizar = function(){
     }
   }
   this.x = x;
+
+  if(teclado.estaPressionada(BOTAO_TIRO)){
+    this.game.balas.push(new Bala(this.game));
+  }
 }

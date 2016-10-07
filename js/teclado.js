@@ -18,6 +18,7 @@ var SETA_ESQUERDA = 37;
 var SETA_ACIMA = 38;
 var SETA_DIREITA = 39;
 var SETA_ABAIXO = 40;
+var BOTAO_TIRO = 32;
 
 function Teclado(elemento){
   this.elemento = elemento;
