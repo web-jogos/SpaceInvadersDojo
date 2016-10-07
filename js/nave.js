@@ -31,7 +31,7 @@ Nave.prototype.atualizar = function(){
   //colisão com bordas
   var teclado = this.game.teclado;
   var colisao_esquerda = this.game.x + this.game.tela.margem_x;
-  var colisao_direita = this.game.tela.largura - this.game.tela.margem_x;
+  var colisao_direita = this.game.tela.largura - this.game.tela.margem_x - this.sprite.largura;
   var delta = this.distancia_na_tela_segundo / this.game.frames_segundo;
   var x = this.x;
   if(teclado.estaApertada(SETA_ESQUERDA) ||
