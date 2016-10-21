@@ -1,7 +1,9 @@
 COR_BALA = "#fff";
-LARGURA_BALA = 2;
-ALTURA_BALA = 6;
+LARGURA_BALA = 3;
+ALTURA_BALA = 9;
 VELOCIDADE_BALA = 8;
+OFFSET_SPRITE_BALA_X = 65;
+OFFSET_SPRITE_BALA_Y = 18;
 
 function Bala(game){
   this.game = game;
@@ -18,7 +20,9 @@ Bala.prototype.atualizar = function(){
   var y = this.y;
   if(y - delta >= colisao_cima){
     y -= delta;
+    this.game.bala_na_tela = true;
   } else {
+    this.game.bala_na_tela = false;
     var balas = this.game.balas;
     var index = balas.indexOf(this);
     if(index > -1){
@@ -30,8 +34,10 @@ Bala.prototype.atualizar = function(){
 
 Bala.prototype.desenhar = function(){
   var context = this.context;
-  context.save();
-  context.fillStyle = COR_BALA;
-  context.fillRect(this.x, this.y, LARGURA_BALA, ALTURA_BALA);
-  context.restore();
+  var sprite = this.game.sprite_bala;
+  var x = this.x;
+  var y = this.y;
+  context.drawImage(sprite.imagem,
+    sprite.x, sprite.y,sprite.largura, sprite.altura,
+    x, y, sprite.largura, sprite.altura);
 }

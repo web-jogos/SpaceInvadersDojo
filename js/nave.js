@@ -52,7 +52,8 @@ Nave.prototype.atualizar = function(){
   }
   this.x = x;
 
-  if(teclado.estaPressionada(BOTAO_TIRO)){
+  if(teclado.estaPressionada(BOTAO_TIRO)
+  && this.game.bala_na_tela == false){
     this.game.balas.push(new Bala(this.game));
   }
 }

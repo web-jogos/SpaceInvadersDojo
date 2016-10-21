@@ -12,6 +12,8 @@ function Game(context, frames_segundo){
   this.context = context;
   this.total_frames = 0;
   this.balas = [];
+  this.coringons = [];
+  this.bala_na_tela = false;
   this.frames_segundo = frames_segundo;
   this.tempo = new Tempo();
   this.x = 0;
@@ -54,6 +56,9 @@ Game.prototype.atualizar = function(){
   this.nave.atualizar();
   for(var i in this.balas){
     this.balas[i].atualizar();
+  }
+  for(var i in this.coringons){
+    this.coringons[i].atualizar();
   }
   //this.coringons.atualizar();
 }
