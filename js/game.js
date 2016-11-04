@@ -57,8 +57,19 @@ Game.prototype.atualizar = function(){
   for(var i in this.balas){
     this.balas[i].atualizar();
   }
+  destruir = [];
   for(var i in this.coringons){
     this.coringons[i].atualizar();
+
+    for(var j in this.balas){
+      if(this.coringons[i].colidiu(this.balas[j])){
+        destruir.push({coringon:this.coringons[i],
+          bala:this.balas[j]});
+      }
+    }
+  }
+  for (var i in destruir){
+    this.destruir_coringon_bala(destruir[i].coringon,destruir[i].bala);
   }
   //this.coringons.atualizar();
 }
@@ -66,10 +77,13 @@ Game.prototype.atualizar = function(){
 Game.prototype.desenhar = function(){
   this.tela.desenhar();
   this.nave.desenhar();
+  for(var i in this.coringons){
+    this.coringons[i].desenhar();
+    }
   for(var i in this.balas){
     this.balas[i].desenhar();
   }
-  //this.coringons.desenhar();
+
 }
 
 Game.prototype.tempoFrame = function(){
@@ -79,6 +93,18 @@ Game.prototype.tempoFrame = function(){
     return true;
   }
   return false;
+}
+
+Game.prototype.destruir_coringon_bala = function(coringon,bala){
+  var index = this.balas.indexOf(bala);
+  if(index > -1){
+    this.balas.splice(index, 1);
+  }
+  this.bala_na_tela = false;
+  index = this.coringons.indexOf(coringon);
+  if(index > -1){
+    this.coringons.splice(index, 1);
+  }
 }
 
 Game.prototype.proximoFrame = function(){

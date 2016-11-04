@@ -11,6 +11,9 @@ function Bala(game){
   this.cor = COR_BALA;
   this.x = game.nave.x + SPRITE_NAVE_LARGURA / 2;
   this.y = game.nave.y;
+  var sprite = this.game.sprite_bala;
+  this.largura = sprite.largura;
+  this.altura = sprite.altura;
 }
 
 

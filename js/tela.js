@@ -8,7 +8,8 @@ function Tela(game){
   this.game.tela = this;
   this.margem_x = this.largura*0.1;
   this.largura_util = this.largura - (2*this.margem_x);
-
+  this.largura_maior_coringon = 24;
+  this.area_coringon = this.margem_x * 7;
 }
 
 Tela.prototype.desenhar = function(){

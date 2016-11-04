@@ -24,10 +24,14 @@ $(function(){
     var tela = new Tela(game);
     game.teclado = teclado; //esconder implementação interna
 
-    var coringons = [];
-    coringons[0] = new Coringon (game,coringons_sprites[0],20,16);
-    coringons[1] = new Coringon (game,coringons_sprites[1],20,48);
-    coringons[2] = new Coringon (game,coringons_sprites[2],20,80);
+var coringons = [];
+for(var i = tela.margem_x; i+(tela.largura_maior_coringon*1.0) <= tela.margem_x
++ tela.area_coringon;i = i+(tela.largura_maior_coringon*1.5)){
+
+    coringons[0] = new Coringon (game,coringons_sprites[0],i,16);
+    coringons[1] = new Coringon (game,coringons_sprites[1],i,48);
+    coringons[2] = new Coringon (game,coringons_sprites[2],i,80);
+  }
     var nave = new Nave(game, sprite_nave);
 
     game.iniciar();
