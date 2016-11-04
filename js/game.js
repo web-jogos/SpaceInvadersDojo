@@ -83,7 +83,6 @@ Game.prototype.desenhar = function(){
   for(var i in this.balas){
     this.balas[i].desenhar();
   }
-
 }
 
 Game.prototype.tempoFrame = function(){

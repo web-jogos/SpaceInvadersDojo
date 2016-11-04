@@ -1,4 +1,8 @@
-function Coringon(game, sprites,x,y){
+  var ESPACO = 6;
+  var MOVIMENTO_DIREITA = 1;
+  var MOVIMENTO_ESQUERDA = 2;
+
+function Coringon(game, sprites, x, y){
   this.game = game;
   this.context = game.context;
   this.sprites = sprites;
@@ -7,6 +11,8 @@ function Coringon(game, sprites,x,y){
   this.game.coringons.push(this);
   this.largura = sprites[0].largura;
   this.altura = sprites[0].altura;
+
+  this.direcao = MOVIMENTO_DIREITA;
 }
 
 Coringon.prototype.colidiu = function(bala){
@@ -21,7 +27,6 @@ Coringon.prototype.colidiu = function(bala){
   bw = this.largura;
 
   return ax < bx+bw && bx < ax+aw && ay < by+bh && by < ay+ah;
-
 }
 
 Coringon.prototype.desenhar = function(){
@@ -37,7 +42,29 @@ Coringon.prototype.desenhar = function(){
 };
 
 Coringon.prototype.atualizar = function(){
+  var margem_esquerda = this.game.tela.margem_x;
+  var margem_direita = this.game.tela.largura - margem_esquerda;
 
+  if(this.direcao == MOVIMENTO_DIREITA){
+    if(this.x + ESPACO > margem_direita){
+      this.x = margem_direita;
+      this.direcao = MOVIMENTO_ESQUERDA;
+      this.y += ESPACO;
+    }
+    else{
+      this.x += ESPACO;
+    }
+  }
+  else if (this.direcao == MOVIMENTO_ESQUERDA) {
+    if(this.x - ESPACO < margem_esquerda){
+      this.x = margem_esquerda;
+      this.direcao = MOVIMENTO_DIREITA;
+      this.y += ESPACO;
+    }
+    else{
+      this.x -= ESPACO;
+    }
+  }
 };
 
 //colisão: event listener (c/ margens)
