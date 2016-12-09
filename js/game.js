@@ -23,6 +23,14 @@ function Game(context, frames_segundo){
   this.y = 0;
   this.yAtingido = 0;
 
+  var game_this = this;
+
+  $(document).keypress(function(event){
+    if(event.keyCode == BOTAO_PAUSA){
+      game_this.pausar();
+    }
+  });
+
 }
 
 Game.prototype.ligar = function(){
@@ -101,7 +109,6 @@ Game.prototype.desenhar = function(){
     this.balas[i].desenhar();
   }
 
-  console.log(this.coringons.length);
     if(this.coringons.length == 0){
       //this.destruir_coringon_bala(destruir[i].coringon,destruir[i].bala);
       this.balas_inimigos.splice(this.index, 1);
