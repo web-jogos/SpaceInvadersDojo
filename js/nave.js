@@ -14,6 +14,10 @@ function Nave(game, sprite){
   var margem_nave_y = tela.altura*0.1 + (SPRITE_NAVE_ALTURA / 2);
   this.y = tela.altura - (margem_nave_y);
   this.distancia_na_tela_segundo = tela.largura_util*DISTANCIA_NA_TELA_SEGUNDO;
+  this.pontuacao = 0;
+  this.altura = 16;
+  this.largura = 22;
+
 }
 
 Nave.prototype.desenhar = function(){

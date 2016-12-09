@@ -7,17 +7,22 @@ Baseado no Livro: Desenvolva Jogos com HTML5, Canvas e Javascript
 Autor: Éderson Cássio
 
 */
+GANHOPONTOS = 5000;
 
 function Game(context, frames_segundo){
   this.context = context;
   this.total_frames = 0;
   this.balas = [];
   this.coringons = [];
+  this.balas_inimigos = [];
+  this.bala_inimigo_na_tela = false;
   this.bala_na_tela = false;
   this.frames_segundo = frames_segundo;
   this.tempo = new Tempo();
   this.x = 0;
   this.y = 0;
+  this.yAtingido = 0;
+
 }
 
 Game.prototype.ligar = function(){
@@ -52,11 +57,16 @@ Game.prototype.limparTela = function(){
 }
 
 Game.prototype.atualizar = function(){
+
   this.tela.atualizar();
   this.nave.atualizar();
   for(var i in this.balas){
     this.balas[i].atualizar();
   }
+
+  for(var i in this.balas_inimigos){
+  this.balas_inimigos[i].atualizar();
+}
   destruir = [];
   for(var i in this.coringons){
     this.coringons[i].atualizar();
@@ -65,7 +75,10 @@ Game.prototype.atualizar = function(){
       if(this.coringons[i].colidiu(this.balas[j])){
         destruir.push({coringon:this.coringons[i],
           bala:this.balas[j]});
+          this.yAtingido = this.coringons[i].y;
+          this.add_pontuacao();
       }
+
     }
   }
   for (var i in destruir){
@@ -77,12 +90,25 @@ Game.prototype.atualizar = function(){
 Game.prototype.desenhar = function(){
   this.tela.desenhar();
   this.nave.desenhar();
+  this.barreira.desenhar();
   for(var i in this.coringons){
     this.coringons[i].desenhar();
     }
+    for(var i in this.balas_inimigos){
+    this.balas_inimigos[i].desenhar();
+  }
   for(var i in this.balas){
     this.balas[i].desenhar();
   }
+
+  console.log(this.coringons.length);
+    if(this.coringons.length == 0){
+      //this.destruir_coringon_bala(destruir[i].coringon,destruir[i].bala);
+      this.balas_inimigos.splice(this.index, 1);
+      this.bala_inimigo_na_tela = false;
+      this.desligar();
+      this.tela.fim();
+    }
 }
 
 Game.prototype.tempoFrame = function(){
@@ -96,6 +122,7 @@ Game.prototype.tempoFrame = function(){
 
 Game.prototype.destruir_coringon_bala = function(coringon,bala){
   var index = this.balas.indexOf(bala);
+
   if(index > -1){
     this.balas.splice(index, 1);
   }
@@ -119,4 +146,8 @@ Game.prototype.proximoFrame = function(){
   requestAnimationFrame(function(){
     animacao.proximoFrame();
   });
+}
+
+Game.prototype.add_pontuacao = function(){
+  this.nave.pontuacao += GANHOPONTOS/this.yAtingido;
 }
