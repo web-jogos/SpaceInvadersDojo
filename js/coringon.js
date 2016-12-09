@@ -1,4 +1,4 @@
-  var ESPACO = 6;
+  var ESPACO = 1;
   var MOVIMENTO_DIREITA = 1;
   var MOVIMENTO_ESQUERDA = 2;
 
@@ -49,7 +49,7 @@ Coringon.prototype.atualizar = function(){
     if(this.x + ESPACO > margem_direita){
       this.x = margem_direita;
       this.direcao = MOVIMENTO_ESQUERDA;
-      this.y += ESPACO;
+      this.y += 50;
     }
     else{
       this.x += ESPACO;
@@ -59,7 +59,7 @@ Coringon.prototype.atualizar = function(){
     if(this.x - ESPACO < margem_esquerda){
       this.x = margem_esquerda;
       this.direcao = MOVIMENTO_DIREITA;
-      this.y += ESPACO;
+      this.y += 50;
     }
     else{
       this.x -= ESPACO;

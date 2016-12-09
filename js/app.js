@@ -1,5 +1,5 @@
 $(function(){
-  FRAMES_POR_SEGUNDO = 60;
+  FRAMES_POR_SEGUNDO = 10;
   var sprite_nave = undefined;
   var sprite_bala = undefined;
 
