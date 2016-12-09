@@ -26,7 +26,7 @@ function Game(context, frames_segundo){
   var game_this = this;
 
   $(document).keypress(function(event){
-    if(event.keyCode == BOTAO_PAUSA){
+    if((event.keyCode ? event.keyCode : event.which) == BOTAO_PAUSA){
       game_this.pausar();
     }
   });
